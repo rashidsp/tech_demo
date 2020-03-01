@@ -1,0 +1,11 @@
+defaults: &defaults
+  base_url: https://showoff-rails-react-production.herokuapp.com/api/v1/
+
+development:
+  <<: *defaults
+
+test:
+  <<: *defaults
+
+production:
+  <<: *defaults
