@@ -1,0 +1,28 @@
+<% widgets.each do |widget| %>
+ <div class="col-md-6 col-xl-4">
+   <div class="image-box image-box--shadowed white-bg style-2 mb-4">
+     <div class="overlay-container">
+       <img src="<%= widget['user']['images']['large_url'] %>" alt="">
+       <a href="#" class="overlay-link"></a>
+     </div>
+     <div class="body">
+       <h5 class="font-weight-bold my-2"><%= widget['name']%></h5>
+       <p class="small"><%= widget['description']%></p>
+       <div class="row d-flex align-items-center">
+         <div class="col-6">
+           <ul class="social-links small circle">
+             <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a></li>
+             <li class="twitter"><a href="#"><i class="fa fa-twitter"></i></a></li>
+             <li class="googleplus"><a href="#"><i class="fa fa-google-plus"></i></a></li>
+             <li class="instagram"><a href="#"><i class="fa fa-instagram"></i></a></li>
+           </ul>
+         </div>
+         <div class="col-6 text-right">
+           <a href="#" class="btn radius-50 btn-gray-transparent btn-animated">Read More <i class="fa fa-arrow-right"></i></a>
+         </div>
+       </div>
+     </div>
+   </div>
+ </div>
+ 
+<% end %>
