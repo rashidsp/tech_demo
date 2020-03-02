@@ -1,0 +1,17 @@
+<nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top justify-content-between">
+  <a class="navbar-brand" href="#">Rails Tech Test</a>
+  <ul class="navbar-nav">
+    <%- if current_user.present? %>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><%= current_user['name'] %></a>
+      </li>
+      <li class="nav-item">
+        <%= link_to 'Logout', session_path(current_user['id']), method: :delete, class: 'nav-link' %>
+      </li>
+    <% else %>
+     <li class="nav-item">
+       <%= link_to 'Connect', new_session_path, method: :get, class: 'nav-link', :remote => true %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

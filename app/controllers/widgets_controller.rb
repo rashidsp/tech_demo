@@ -4,7 +4,7 @@ class WidgetsController < ApplicationController
   # GET /widgets
   # GET /widgets.json
   def index
-    @widgets = WidgetApi::Widget.all(params[:term])
+    @widgets = Widget.all(params[:term])
   end
 
   # GET /widgets/1
@@ -14,7 +14,7 @@ class WidgetsController < ApplicationController
 
   # GET /widgets/new
   def new
-    @widget = WidgetApi::Widget.new
+    @widget = Widget.new
   end
 
   # GET /widgets/1/edit
@@ -24,7 +24,7 @@ class WidgetsController < ApplicationController
   # POST /widgets
   # POST /widgets.json
   def create
-    @widget = WidgetApi::Widget.new(widget_params)
+    @widget = Widget.new(widget_params)
 
     respond_to do |format|
       if @widget.save
