@@ -1,0 +1,5 @@
+$("#formTitle").html("<%= @current_user['name'] %>");
+$("#modalBody").html("<%= escape_javascript(render partial: 'shared/update_form' ) %>");
+$('#GetOfferModal').modal({
+  show: true
+});
