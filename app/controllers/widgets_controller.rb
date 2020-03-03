@@ -1,12 +1,12 @@
 class WidgetsController < ApplicationController
   before_action :authenticate_user, except: :landing
-  before_action :set_widget, only: [:show, :edit, :update, :destroy]
+  before_action :set_widget, only: [:edit]
 
   # GET /widgets
   # GET /widgets.json
 
   def index
-    @widgets = Widget.all(term: params[:term], token: session[:token])
+    @widgets = Widget.user_widgets(term: params[:term], token: session[:token])
   end
 
   def landing
@@ -30,15 +30,12 @@ class WidgetsController < ApplicationController
   # POST /widgets
   # POST /widgets.json
   def create
-    @widget = Widget.new(widget_params)
-
+    @widget = Widget.new(widget: widget_params, token: session[:token])
     respond_to do |format|
-      if @widget.save
-        format.html { redirect_to @widget, notice: 'Widget was successfully created.' }
-        format.json { render :show, status: :created, location: @widget }
+      if @widget.save!
+        format.html { redirect_to widgets_path, notice: 'Widget was successfully created.' }
       else
         format.html { render :new }
-        format.json { render json: @widget.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -46,13 +43,12 @@ class WidgetsController < ApplicationController
   # PATCH/PUT /widgets/1
   # PATCH/PUT /widgets/1.json
   def update
+    @widget = Widget.new(widget: widget_params, token: session[:token])
     respond_to do |format|
-      if @widget.update(widget_params)
-        format.html { redirect_to @widget, notice: 'Widget was successfully updated.' }
-        format.json { render :show, status: :ok, location: @widget }
+      if @widget.update!
+        format.html { redirect_to widgets_path, notice: 'Widget was successfully updated.' }
       else
         format.html { render :edit }
-        format.json { render json: @widget.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -60,9 +56,10 @@ class WidgetsController < ApplicationController
   # DELETE /widgets/1
   # DELETE /widgets/1.json
   def destroy
-    @widget.destroy
+    @widget = Widget.new(widget: {id: params[:id]}, token: session[:token])
+    @widget.delete!
     respond_to do |format|
-      format.html { redirect_to widgets_url, notice: 'Widget was successfully destroyed.' }
+      format.html { redirect_to widgets_url, notice: 'Widget was successfully deleted.' }
       format.json { head :no_content }
     end
   end
@@ -70,11 +67,11 @@ class WidgetsController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_widget
-      @widget = Widget.find(params[:id])
+      @widget = Widget.new(widget: widget_params, token: session[:token])
     end
 
     # Only allow a list of trusted parameters through.
     def widget_params
-      params.require(:widget).permit(:name, :description, :kind)
+      params.require(:widget).permit(:id, :name, :description, :kind)
     end
 end

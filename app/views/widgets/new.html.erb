@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-8">
          <h1>New Widget</h1>
-          <%= render 'form', widget: @widget %>
+          <%= render 'form', widget: @widget, form_path: widgets_path, form_method: :post %>
         </div>
       </div>
     </div>
