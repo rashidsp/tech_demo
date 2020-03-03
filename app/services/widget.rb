@@ -13,6 +13,18 @@ class Widget
     response_body['data'].fetch('widgets', [])
   end
 
+  def self.user_widgets(term: nil, token: nil)
+    response = RestClient.get "#{APP_CONFIG['base_url']}/api/v1/widgets/visible", {
+     params: {
+      term: term.to_s,
+      client_id: CLIENT_ID,
+      client_secret: CLIENT_SECRET
+     }
+    }
+    response_body = JSON.parse(response.body)
+    response_body['data'].fetch('widgets', [])
+  end
+
   # def self.find(id)
   #   response = Request.get("recipes/#{id}/information")
   #   Recipe.new(response)

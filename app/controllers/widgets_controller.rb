@@ -1,9 +1,15 @@
 class WidgetsController < ApplicationController
+  before_action :authenticate_user, except: :landing
   before_action :set_widget, only: [:show, :edit, :update, :destroy]
 
   # GET /widgets
   # GET /widgets.json
+
   def index
+    @widgets = Widget.all(term: params[:term], token: session[:token])
+  end
+
+  def landing
     @widgets = Widget.all(params[:term])
   end
 

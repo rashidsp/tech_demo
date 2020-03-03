@@ -1,32 +1,19 @@
-<%= form_with(model: widget, local: true) do |form| %>
-  <% if widget.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(widget.errors.count, "error") %> prohibited this widget from being saved:</h2>
+<%= form_tag widgets_path do %>
+   <div id = "formError" style="color: red"></div>
+   <div class="form-group">
+      <input type="text" class="form-control" name="user[name]" id="Name" placeholder="Name">
+   </div>
+   <div class="form-group">
+      <input type="text" class="form-control" name="user[description]" id="description" placeholder="Description">
+   </div>
+   <div class="form-group">
+     <input type="checkbox" name="user[kind]" id="kind"> Visiable?
+   </div>
 
-      <ul>
-      <% widget.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+   <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>">
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_field :description %>
-  </div>
-
-  <div class="field">
-    <%= form.label :kind %>
-    <%= form.text_field :kind %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
+   <div class="d-flex links justify-content-between">
+      <button type="submit" class="btn btn-success" id="btnGetOffer">Save</button>
+      <%= link_to 'Back', widgets_path, class: "btn btn-primary" %>
+   </div>
 <% end %>

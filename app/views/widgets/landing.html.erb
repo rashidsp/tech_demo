@@ -1,7 +1,7 @@
 <div class="container">
 <section class="bg-light py-5">
         <div class="container">
-          <div class="row">
+          <div class="row justify-content-between">
             <div class="col-8">
               <div class="search-form">
                  <%= form_tag(root_path, method: :get, remote: true) do %>
@@ -12,7 +12,6 @@
                  <% end %>
                </div>
             </div>
-            <%= link_to 'Add New', new_widget_path, method: :get, class: 'btn btn-primary' %>
           </div>
           <br />
           <div id="items_grid" class="row">

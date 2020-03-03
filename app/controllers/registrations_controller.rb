@@ -2,6 +2,10 @@ class RegistrationsController < ApplicationController
   def new
   end
 
+  def edit
+
+  end
+
   def create
     @user = Register.new(user: user_params)
     if @user.save!
@@ -9,6 +13,11 @@ class RegistrationsController < ApplicationController
     else
       @error_message =  @user.errors.first
     end
+  end
+
+  def update
+    @user = Register.new(user: user_params, token: session[:token])
+    @error_message =  @user.errors.first unless @user.update!
   end
 
   private
