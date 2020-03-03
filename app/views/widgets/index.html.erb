@@ -1,23 +1,23 @@
 <div class="container">
-<section class="bg-light py-5">
-        <div class="container">
-          <div class="row">
-            <div class="col-8">
-              <div class="search-form">
-                 <%= form_tag(widgets_path, method: :get, remote: true) do %>
-                    <div class="input-group">
-                      <%= text_field_tag :term, nil, placeholder: "Search", class: "form-control input-lg"%>
-                      <%= submit_tag 'Search', class: "btn btn-primary ml-2" %>
-                    </div>
-                 <% end %>
-               </div>
-            </div>
-            <%= link_to 'Add New', new_widget_path, method: :get, class: 'btn btn-primary' %>
-          </div>
-          <br />
-          <div id="user_items_grid" class="row">
-            <%= render partial: 'widgets_list', locals: { widgets: @widgets}  %>
-          </div>
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-8">
+          <div class="search-form">
+             <%= form_tag(widgets_path, method: :get, remote: true) do %>
+                <div class="input-group">
+                  <%= text_field_tag :term, nil, placeholder: "Search", class: "form-control input-lg"%>
+                  <%= submit_tag 'Search', class: "btn btn-primary ml-2" %>
+                </div>
+             <% end %>
+           </div>
         </div>
-      </section>
+        <%= link_to 'Add New', new_widget_path, method: :get, class: 'btn btn-primary' %>
+      </div>
+      <br />
+      <div id="user_items_grid" class="row">
+        <%= render partial: 'widgets_list', locals: { widgets: @widgets}  %>
+      </div>
+    </div>
+  </section>
 </div>
